@@ -1,0 +1,699 @@
+\documentclass[a4paper,12pt, oneside, openany]{jsbook}
+
+\makeatletter
+
+\def\@thesis{卒業論文}
+\def\id#1{\def\@id{#1}}
+\def\department#1{\def\@department{#1}}
+
+\def\@maketitle{
+\begin{center}
+{\huge \@thesis \par} %修士論文と記載される部分
+\vspace{10mm}
+{\LARGE\bf \@title \par}% 論文のタイトル部分
+\vspace{20mm}
+{\Large \@department \par} % 所属部分
+{\Large 学籍番号　\@id \par} % 学籍番号部分
+{\Large \@author　\par}% 氏名 
+\vspace{10mm}
+{\Large \@date\par} % 提出年月日部分
+\end{center}
+\par\vskip 1.5em
+}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage{here}
+\usepackage{bm}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{ascmac}
+\usepackage{makeidx}
+\usepackage{amsmath,amssymb}
+\usepackage{cases}
+\usepackage{braket}
+\usepackage{float}
+\usepackage{color}
+\usepackage{txfonts}
+\usepackage{setspace}
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\captionsetup{compatibility=false}
+
+%\usepackage[setpagesize=false, dvipdfmx]{hyperref}
+\abovecaptionskip=-3pt
+\belowcaptionskip=-8pt
+\setlength{\voffset}{-1.04cm}
+\setlength{\textheight}{35\baselineskip}
+\addtolength{\textheight}{\topskip}
+\pagestyle{headings}
+\renewcommand{\figurename}{Fig.~}
+\renewcommand{\tablename}{Table.~}
+\makeatother
+
+%\renewcommand{\contentsname}{Contents} % contentsの英語表示
+%\renewcommand{\prechaptername}{Chapter~}
+%\renewcommand{\postchaptername}{} % chapterの英語表示
+
+
+\title{相分離臨界点近傍溶液の拡散浸透における流速の温度依存性の冪則\\A power-law dependence of the flow rate on the reduced temperature in a diffusioosmosis of a near-critical binary fluid mixture }
+\date{\today}
+\author{慶應義塾大学理工学部\\
+物理情報工学科\\
+学籍番号: 62005624~~~~加藤連太郎\\
+指導教員~~~~藤谷 洋平}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\mbox{}\newpage
+\newpage
+% 目次の表示
+\pagenumbering{roman}
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+% 本文
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+\newpage
+\chapter{序論}
+溶液と壁が接しているとき、壁と溶質分子の相互作用によって吸着層を形成する。この時、壁と水平方向に濃度勾配をかけると拡散浸透という現象が見られる。溶液が占める領域が半無限で、一方向のみの壁の影響を考えると拡散浸透の流速場は温度依存性の冪則に従うと示唆されている[1]。本研究では、マイクロ流体デバイスで使われるような幅の流路を流れる流速場の温度依存性を、相分離臨界点近傍の二成分流体を用いて機構解明することが目的である。
+
+\section{マイクロ流体デバイス}
+マイクロ流体デバイスは、サブミクロからミクロンサイズの幅の流路から成り、流体の混合や分流を可能にする。輸送経路が短く、多数の流路を高密度で配置できるので、高い応答速度での処理が可能である。複数プロセスを同時に行うことができる。微量な検体の効率的な分析ができるので、近年では、研究開発領域で盛んに利用されている。この微小な流路に試薬を流す駆動力として、拡散浸透や熱浸透、電気浸透がある。
+
+
+
+
+\section{一般的な非電解質の拡散浸透}
+Fig.1.1は、非電解質の溶液が壁と接している状態を示している。青丸は溶質分子を表し、背景は溶媒である。Fig.1.1の左の図は、溶質分子が壁との引力相互作用の影響を受けて壁際に集まっている状態を示す。距離に応じた引力相互作用の影響は、ポテンシャルエネルギー$\Psi$として表すことができる。$\Psi$は壁からの距離$x$の関数である。また、壁から十分遠い領域では、引力相互作用の影響が非常に小さくなりゼロになると考える。そのため、溶質分子は一様に分布し、溶質濃度が一定で$C_\infty$と表すことができる。
+壁近くの溶質濃度は、壁と溶質分子の相互作用によりFig.1.1の左図の様に非一様である。溶液は数nmの溶質分子の吸着層を形成している。そして、各溶質分子は$-\nabla\Psi$の力を受ける。この時、Fig.1.1の右図の様に流路に沿って水平方向に濃度勾配$\nabla C_\infty$をかけると、圧力勾配$\nabla p$が生じ溶液に流速場$\boldsymbol{v}$が生じる[2]。この機構を拡散浸透という。この機構説明は、Derjaguinによる説明である。吸着層が$\mathrm{nm}$オーダーの幅で分子スケールである一方、圧力や速度場は巨視的なスケールで定義されているため、圧力勾配やストークス方程式を使えるか疑問が生じる。
+
+
+\begin{figure}[!htbp]
+\label{Fig.1}
+\includegraphics[width=10.0cm]{kakusannderuarin.png}
+\vspace*{-0.4cm}
+\centering  % 中央揃えする
+\begin{spacing}{0.8}　%行間0.9
+\caption{diffusion phoresis of a solution}
+\end{spacing}
+\end{figure}
+
+\section{相分離臨界点近傍の二成分流体}
+拡散浸透を定量的に機構解明ができるように、流体力学を用いることができる程度に吸着層が厚くなる場合を考える。
+異なる二つの非電解質溶液を同じ容器に入れた二成分溶液を用いた。この二成分溶液は、組成と温度に依存して完全に混ざりあったり分離して二相を形成したりする。完全に混ざりあった状態を一様相状態といい、分離して二相を形成している状態を分離相という。これらを表した相図をFig.1.2に示す。縦軸は温度、横軸は組成を表す。二成分の質量密度をそれぞれ$\rho_A$と$\rho_B$とし、$\varphi$を成分間の質量密度の差とすると$\varphi=\rho_\mathrm{A}-\rho_\mathrm{B}$である。臨界点での組成を臨界組成といい$\varphi_C$とする。$\varphi_C$からの差を秩序パラメータ$\psi$とする。
+
+\begin{equation}\label{1}
+\psi=\varphi-\varphi_\mathrm{C}
+\end{equation}
+
+\noindent また、臨界温度$T_C$を用いて換算温度$\tau$を以下のように定義する。
+
+\begin{equation}\label{2}
+\tau=\frac{T-T_C}{T_C}
+\end{equation}
+
+
+\noindent Fig.1.2の上に凸の曲線を共存線という。この共存線の上側は一様相状態、下側は二相状態である。また、頂点を相分離臨界点という。Fig.1.2の青い楕円で示される領域にある相分離臨界点近傍の溶液は、外部刺激に非常に敏感で、入力に対する応答が非常に大きく出る。このため、壁との相互作用の影響が大きく出て、大きな幅の吸着層を形成する。実験では、その厚さは数十nmに達しうる。
+\begin{figure}[!htbp]
+\label{Fig.3}
+\includegraphics[width=6.0cm]{souzu.png}
+\vspace*{-0.4cm}
+\centering  % 中央揃えする
+\begin{spacing}{0.8}　%行間0.9
+\caption{Phase diagram of a binary fluid mixture}
+\end{spacing}
+\end{figure}
+
+\newpage
+臨界点近傍の溶液が壁と接した時、壁際の様子はFig.1.3のようになる。壁を基準として$x$軸をとり、吸着層が相関距離$\xi$で表すことができ、以下の式(\ref{3})ようになる。
+\begin{equation}\label{3}
+\xi=\xi_0\tau^{-\nu}
+\end{equation}
+$\xi_0$は、物質による定数である。以下で出てくる$\nu$と$\beta$は、３次元イジングモデルから導出された臨界指数と呼ばれる定数である。イジングモデルとは、付録A1にあるように（もっと詳しく丁寧に書き直す）格子状に並んだ上下のスピン間の相互作用を考えて、全体のスピンが取りうる確率を記述したモデルである。本研究では、イジングモデルを粗くみたGinzburg-Landau-Wilson modelを利用して、イジングモデルの臨界指数が用いられている。
+
+\begin{equation}
+\begin{split}
+   \nu & = 0.630\\
+  \beta & = 0.326
+\end{split}
+\end{equation}
+\noindent
+「（保留）スケーリング」
+
+$\xi_0$は分子サイズでほとんどの物質でおおよそ0.2nm程度である。ここで$\xi_0=0.2\mathrm{nm}$において$\tau$の値と、臨界点の$\xi$の概算を式(\ref{gaisan})に示す。。$\tau=10^{-5}$より小さい精度(つまり、$T_{\mathrm{C}}-T<0.01\ K$)で実験を行うことは難しいため$\tau=10^{-5}$までとした。
+
+\begin{equation}\label{gaisan}
+   \begin{cases}
+  \tau=10^{-2} & \xi=3.64\ \mathrm{nm}\\
+  \tau=10^{-3} & \xi=15.52\  \mathrm{nm}\\
+  \tau=10^{-4} & \xi=66.22\  \mathrm{nm}\\
+  \tau=10^{-5} & \xi=282.5 \ \mathrm{nm}
+  \end{cases}
+\end{equation}
+
+\noindent このような概算から、吸着層がおおよそ数十nmになるためには、$\tau<10^{-3}$(つまり、$|T_\mathrm{C}-T|<=0.3\ K$)が必要であることがわかる。
+\newpage
+
+\begin{figure}[!htbp]
+\label{Fig.4}
+\includegraphics[width=6.0cm]{2.png}
+\vspace*{-0.4cm}
+\centering  % 中央揃えする
+\begin{spacing}{0.8}　%行間0.9
+\caption{Preferential adsorption}
+\end{spacing}
+\end{figure}
+\noindent
+相分離臨界点近傍の溶液は、壁との相互作用による影響が非常に大きく現れ、二成分のうち壁との親和性が高い成分が壁際に吸着層を作り出す。これを選択的吸着という[3]。、壁から十分離れた領域で、臨界組成であるので秩序パラメータ$\psi=0$であるとすると、ここでの$\xi$の値で、おおよその吸着層の厚さとなる。二成分間の壁との親和性の差が十分大きいとすると、$\tau$が十分小さくて$x$が$\xi$よりも小さい場合、秩序パラメータは次の様になる[5]。
+
+
+\begin{equation}\label{4}
+\psi(x)\propto x^{-\frac{\beta}{\nu}}
+\end{equation}
+
+
+\noindent 壁から応答距離より離れた位置では、壁との相互作用を無視できる。式(\ref{3})と式(\ref{4})より吸着量は以下のようになる。
+
+\begin{equation}\label{5}
+\int_{0}^{\infty}dx \hspace{1mm}\psi(x) \hspace{2mm} \propto  \int_{0}^{\xi} dx \hspace{1mm} x^{-\frac{\beta}{\nu}}  \hspace{2mm} \propto  \hspace{2mm}\xi^{(-\frac{\beta}{\nu})+1} \hspace{2mm} \propto \hspace{2mm}\tau^{\beta-\nu}
+\end{equation}
+\noindent
+吸着量が臨界温度を基準とした換算温度の$\beta-\gamma$の冪に比例することが示された。
+
+\section{相分離臨界点近傍溶液の拡散浸透}
+相分離臨界点近くの一様相にある二成分流体でも拡散浸透が起こることが理論的に提言されている[isothermal]。Fig.1.4は相分離臨界点近傍の拡散浸透を表し、変数はFig.1.1と同様である。Fig.1.4の左の図は、相分離臨界点近傍の二成分溶液と壁が接している平衡状態を表す。また、Fig.1.4の右の図は、壁と水平方向に濃度勾配をかけた図である。
+この図の流速場が換算温度の冪に比例することが示唆されている[1]。流速場を知るためにFig.1.4の左の平衡状態の組成分布を知る必要がある。
+\begin{figure}[!htbp]
+\label{Fig.2}
+\includegraphics[width=10.0cm]{3.png}
+\vspace*{-0.4cm}
+\centering  % 中央揃えする
+\begin{spacing}{0.8}　%行間0.9
+\caption{Diffusion phoresisi of a near-critical binary fluid mixture}
+\end{spacing}
+\end{figure}
+
+%\begin{figure}[!htbp]
+%\begin{center}
+%\hspace*{-3em}
+%\includegraphics[width=90mm,height=80mm]{卒論Fig.5.eps}
+%\end{center}
+%\caption{2-phase separation.}
+%\end{figure}
+
+%\begin{figure}[!htbp]
+%\begin{center}
+%\hspace*{-6em}
+%\includegraphics[width=100mm,height=90mm]{さいとう.eps}
+%\end{center}
+%\caption{A phase diagram for the mixture of hexane and nitrobenzene. 文献[8]より転載}
+%\end{figure}
+
+%\begin{figure}[!htbp]
+%\begin{center}
+%\hspace*{-3em}
+%\includegraphics[width=70mm,height=60mm]{卒論Fig.71.eps}
+%\end{center}
+%\caption{A schematic representation of a Brownian particle in a Near-%critical Binary Fluid Mixture.}
+%\end{figure}
+
+%\begin{figure}[htbp]
+%\begin{minipage}[b]{0.45\linewidth}
+%\centering
+    %\includegraphics[keepaspectratio, scale=0.8]{1.png}
+    %\subcaption{Fig.1 the phase diagram of binary fluid mixture}
+  %\end{minipage}
+  %\begin{minipage}[b]{0.45\linewidth}
+    %\centering
+    %\includegraphics[keepaspectratio, scale=0.8]{2.png}
+    %\subcaption{Fig.2 壁際の様子}
+  %\end{minipage}
+  %\vspace*{0.5cm}
+  %\begin{spacing}{1.0} %行間0.9
+%\caption{キャプションの付け方工事中.}
+  %\end{spacing}
+%\end{figure}
+
+
+
+
+
+
+
+\newpage
+
+
+
+\section{組成分布}
+
+ストークス方程式を用いて機構解明する際に、まず平衡状態の組成分布を知る必要がある。その後、組成の摂動計算を利用して、流速場を求める。相分離臨界点近傍では、相関距離以下の空間分解能で見ると非常にゆらぎが大きく、似たような確率分布で様々な組成分布を取り得る。このような揺らぎが大きくなる臨界現象として、強磁性体の相転移があり、それを表すモデルとして、Isingmodeleがある。
+また、以下のような臨界指数を示す表からわかる通り、二成分溶液と３D-Isingmodeleは同じユニバーサルであることがわかる。
+
+\begin{table}[h]
+ \caption{光速度の測定の歴史}
+ \label{table:SpeedOfLight}
+ \centering
+  \begin{tabular}{clll}
+   \hline
+   a \\
+    & & & $\times 10^8$ [m/sec] \\
+   \hline \hline
+   1638 & Galileo & 二人が離れてランプの光を見る & (音速10倍以上) \\
+   1675 & Roemer & 木星の衛星の観測から & 2 \\
+   1728 & Bradley & 星の収差から & 3.01 \\
+   1849 & Fizeau & 高速に回転する歯車を通過する光を見る & 3.133 \\
+   1862 & Foucault & 高速に回転する鏡の光の角度変化 & 2.99796 \\
+   今日 & (定義) & & 2.99792458 \\
+   \hline
+  \end{tabular}
+\end{table}
+
+Isingmodeleを粗くみた平均場理論であるギンツブルグ-ランダウモデルを用いた[4]。ギブツブルグ-ランダウモデルは、以下のような式で確率分布を表す。
+
+\begin{align}\label{GLW}
+P_{profile} \propto \exp\left[-\int_V d\boldsymbol{r} \left(\frac{1}{2}m \phi^2+\frac{1}{4!} \lambda\phi^4+\frac{1}{2}a^2|\nabla\phi^2|-J\phi\right)\right]
+\end{align}
+
+\noindent 上の式(\ref{GLW})の$J$は外部磁場を表している。また、$\phi$は局所スピンの合計を表し、絶対温度$T$と相転移が起こるキュリー点$T_0$を用いて、$m \propto T-T_0$とする。\\
+このモデルを用いて、二成分溶液の組成分布を記述した。秩序パラメータを$\psi=\varphi-\varphi_\mathrm{C}$とした。
+
+\newpage
+確率分布は、自由エネルギー汎函数を用いて
+
+\begin{equation}\label{6}
+P \hspace{2mm}\propto \hspace{2mm} \exp(-\Omega[\psi])
+\end{equation}
+である。以下では、$k_{\rm B}$はボルツマン定数である。
+
+
+局所の相関距離以下のゆらぎを無視して最尤の組成分布が平均の組成分布になるように粗視化を行なった。粗視化された$\psi$の確率密度関数は、文献[4]によって求められている。壁から遠方で臨界組成の場合、文献[4]によれば溶液の自由エネルギー汎関数は、容器壁との親和性を考えて
+\begin{equation}\label{7}
+\Omega=\int_V d\boldsymbol{r}\biggr\{k_BT\left(\frac{m_r}{2}\psi^2+\frac{\lambda_r}{4!}\psi^4+\frac{a_r^2}{2}|\nabla\psi|^2 +\right)+\mu_-^{cc}\varphi+\rho \mathrm{dependentpart}\biggr\}-\int_{\partial V}dAh\psi
+\end{equation}
+となる。
+
+式(\ref{7})第一項は、溶液の領域$V$にわたる体積成分で、係数$m_R,\lambda_r,a_r$は$\psi$や$\tau$に依存する。また、$\rho$dependentpart$\rho$依存の項であるが、変化量は非常に微小のため非平衡状態では考えないものとする。第二項は、流路壁$\partial{V}$にわたる面積分で、$h$は、surface fieldといい成分毎の壁との相互作用の差を表し、式(\ref{GLW})で示した磁場を表す項に対応する。
+序論1.2のDerjaguinの説明では、壁と溶質分子の引力相互作用の影響をポテンシャルエネルギー$\Psi$で説明した。ポテンシャルエネルギーは、遠方でも考慮する必要がある。臨界点近傍の二成分流体における吸着については、壁からの距離が分子サイズ以上では、壁と溶液の引力相互作用を無視できる$h$で評価している。
+$h>0$の時、壁際での$\psi$の値が大きくなることで、自由エネルギーが下がる。つまり、式(\ref{6})を考慮して、一方の成分が壁際に吸着しやすいことになる。また、式(\ref{6})から、この汎関数(\ref{7})を最小化する$\psi$が最尤の$\psi$である。このことから組成分布が得られる。グランドポテンシャルは、この最尤の$\psi$が与える自由エネルギー汎函数の値である。
+
+
+\section{研究の目的}
+以上のような背景を踏まえたうえで、本論文の目的は臨界点近傍の拡散浸透の流速場を定量的に計算することである。
+相分離臨界点近傍溶液が占める領域が半無限空間の場合、先行研究で流速場が$\tau^{\nu-\beta}$に比例することが示唆されている[1]。
+第1章では、壁の影響が一方向からのみの場合について定量的に評価した方程式を導出しMathematica(Wolfram Research)の結果を示す。
+
+第2章では、
+
+第3章では、
+
+流路の幅が相関距離に対して有限の幅を持つ場合に、この冪則がどう変化するか、検討し拡散浸透の機構解明を行なった。
+
+
+\newpage
+\chapter{半無限流路における流速の温度依存性の冪則}
+\noindent 壁の影響が一方向からのみの場合について定量的に評価した方程式を導出しMathematicaの結果を示す。
+\section{二成分溶液の熱力学変数、Maxwellの関係式}
+
+\section{平衡状態の組成分布}
+(11ページについて)
+Renomalized Local Function Theoryに従って粗視化した自由エネルギー汎函数を最小化する$\psi$を求める。
+$\tau>0$(つまり、臨界点近傍の一様相の領域)かつ$\mu_-=\mu_-^{cc}$(つまり、$\mu_-$は一定)とする。また、流体が流れる経路は、一方向の壁の影響のみを考える半無限の空間とする。$x$方向のみの一次元で考えるとする。
+序論で紹介したように、式(\ref{7})を最小化する$\psi$を求める。また、式(\ref{7})の右辺第１項の被積分関数を$b_{balk}$とし、$f_b$を以下のようにおく。
+\begin{equation}
+\begin{split}
+   f_b&=k_BT\left(\frac{m_r}{2}\psi^2+\frac{\lambda_r}{4!}\psi^4\right)\\
+&=\frac{1}{2} k_BTc_1\xi_0^{-2}\omega^{\gamma-1}\tau\psi^2+\frac{1}{12}k_BTc_1c_2\xi_0^{-2}\omega^{\gamma-2\beta}\psi^4
+\end{split}
+\end{equation}
+また、
+
+\begin{equation}
+\begin{split}
+   f_{balk}=&k_BT\left(\frac{m_r}{2}\psi^2+\frac{\lambda_r}{4!}\psi^4+\frac{a_r^2}{2}|\nabla\psi|^2 +\right)+\mu_-^{cc}\varphi+\rho\mathrm{dependentpart}\\
+   =&f_b+\frac{a_r^2k_BT}{2}|\nabla\psi|^2 ++\mu_-^{cc}\varphi+\rho \mathrm{dependentpart}
+\end{split}
+\end{equation}
+であるので、
+\begin{equation}
+  \begin{split}
+    \Omega[\psi]=&\int_V d\boldsymbol{r}\ f_{balk}-\int_{\partial_V}ds\ h\psi\\
+    =&\int_V d\boldsymbol{r}\ f_b+\frac{a_r^2k_BT}{2}|\nabla\psi|^2 ++\mu_-^{cc}\varphi+\rho \mathrm{dependentpart}-\int_{\partial_V}ds\ h\psi
+  \end{split}
+\end{equation}
+
+$\Omega$の停留点(最小値)を求める。
+\begin{equation}
+\begin{split}\label{Teiryuu}
+  \Omega[\psi+\delta\psi]-\Omega[\psi]=&\int_V d\boldsymbol{r}\left\{\frac{\partial f_b}{\partial \psi}\delta\psi+\left(\frac{\partial}{\partial \psi}\frac{k_\mathrm{B}T}{2}a^2_R\right)\delta\psi|\nabla\psi|^2+k_\mathrm{B}Ta^2_R(\nabla\psi)\cdot(\nabla\delta\psi)\right\}\\
+ &          \hspace{5cm} -\int_{\partial_V}ds\ h\psi\\
+  =&\int_V\left\{  \frac{\partial f_b}{\partial \psi}\delta\psi+\frac{k_\mathrm{B}T}{2}\frac{\partial a^2_R }{\partial \psi}|\nabla\psi|^2-k_\mathrm{B}T\frac{\partial a^2_R}{\partial \psi}|\nabla\psi|^2-k_\mathrm{B}Ta^2_R\Delta\psi\right\}\\
+  &     \hspace{3cm}+\int_{\partial V}dS\left(k_\mathrm{B}Ta^2_R\boldsymbol{n}\cdot\nabla\psi-h\right)+高次微小
+\end{split}
+\end{equation}
+以下の変形を用いた。
+\begin{equation}
+k_\mathrm{B}Ta^2_R(\nabla\psi)\cdot(\nabla\delta\psi)=\nabla\cdot\left(k_\mathrm{B}Ta^2_R(\nabla\psi)\delta\psi\right)-k_\mathrm{B}T\nabla\cdot(a^2_R\nabla\psi)\delta\psi+高次微小
+\end{equation}
+最尤の$\psi$は、式(\ref{Teiryuu})の被積分関数が0になる必要があるので、以下の条件を満たすことになる。
+溶液を示す領域$V$では、
+\begin{equation}\label{Vnoryouiki}
+  \frac{\partial f_b}{\partial \psi}\delta\psi-\frac{k_\mathrm{B}T}{2}\frac{\partial a^2_R }{\partial \psi}|\nabla\psi|^2-k_\mathrm{B}Ta^2_R\Delta\psi=0
+\end{equation}
+溶液と壁の境界面では、以下の式が成り立つ。
+\begin{equation}\label{kyoukai}
+  k_\mathrm{B}Ta^2_R\boldsymbol{n}\cdot\nabla\psi-h=0
+\end{equation}
+一次元問題を扱う場合、以下のように書き換えることができる。
+\begin{equation}
+  \nabla\psi=\frac{\partial \psi}{\partial x}
+\end{equation}
+\begin{equation}
+  \Delta\psi=\frac{\partial^2\psi}{\partial x^2}
+\end{equation}
+\begin{equation}
+  \boldsymbol{n}\cdot\nabla\psi=-\frac{\partial \psi}{\partial x}
+\end{equation}
+
+式(\ref{kyoukai})と式(\ref{Vnoryouiki})は次のようになる。
+
+
+\begin{equation}
+  s=\frac{c_2\omega^{1-2\beta}\psi^2}{\tau}
+\end{equation}
+とおくと式(付録RLFTあとで)より、
+\begin{equation}
+  \frac{\omega}{\tau}=1+s
+\end{equation}
+\begin{equation}\label{psi1}
+  \psi^2=\frac{1}{c_2}s(1+s)^{2\beta-1}\tau^{2\beta}
+\end{equation}
+となる。
+
+$h>0$(つまり、A成分が強吸着)とすると、$\psi=\rho_\mathrm{A}-\rho_\mathrm{B}-\varphi_C$より$\psi>0$かつ$\frac{d\psi}{dx}<0$となる。式(\ref{psi1})より
+
+\begin{equation}
+  \psi=\frac{1}{\sqrt{c_2}}\sqrt{s}(1+s)^{\beta-\frac{1}{2}}\tau^\beta
+\end{equation}
+
+となる。$x$に関して微分すると
+
+\begin{equation}
+\begin{split}
+   \frac{d\psi}{dx}&=\frac{\tau}{\sqrt{c_2}}\left(\frac{1}{2\sqrt{s}}(1+s)^{\beta-\frac{1}{2}}+\sqrt{s}(\beta-\frac{1}{2})(1+s)^{\beta-\frac{3}{2}}\right)\frac{ds}{dx}\\
+   &=\frac{\tau}{\sqrt{c_2}}\frac{(1+s)^{\beta-\frac{3}{2}}}{\sqrt{s}}\left(\frac{1+s}{2}+\left(\beta-\frac{1}{2}\right)s\right)\frac{ds}{dx}
+\end{split}
+\end{equation}
+
+
+
+
+
+
+\section{半無限流路における流速}
+(9ページと12ページについて)
+Fig1.4の平衡状態における変数を以下のように定義する。上からそれぞれ二成分の質量濃度の差、二成分の質量濃度の和、化学ポテンシャルの和と差、成分Aの濃度を示す(上次第で不要なものは消していく。)。
+
+\begin{equation}
+  \begin{split}
+    &\varphi^{(0)}=\rho_\mathrm{A}-\rho_\mathrm{B}\\
+    &\rho^{(0)}=\rho_\mathrm{A}+\rho_\mathrm{B}\\
+    &\mu_{\pm}^{(0)}=\frac{1}{2}(\mu_\mathrm{A}\pm\mu_\mathrm{B})\\
+    &C_\mathrm{A}=\frac{M_\mathrm{A}}{M}
+  \end{split}
+\end{equation}
+
+駆動力としてA成分の組成$C_\mathrm{A}$のみを変化させる。
+
+
+
+
+
+
+
+
+
+
+\newpage
+\chapter{相関距離に対して有限な幅の流路における流速の温度依存性の冪則}
+\section{有限流路におけるRYUU}
+
+
+\section{有限流路における流速}
+
+
+
+
+\newpage
+\chapter{結論・展望}
+
+\appendix
+\newpage
+\chapter{二成分溶液の熱力学変数}
+\noindent（MEMO１０ページについて）\\
+\noindent
+二成分流体における熱力学変数の関係を以下に示す。体積$V$、温度$T$、圧力$P$、A成分とB成分の質量をそれぞれ$M_\mathrm{A},M_\mathrm{B}$とする。組成比$ C_\mathrm{A}$、$C_\mathrm{B}$を定義する。
+
+\begin{equation}\label{situryou}
+  M=M_\mathrm{A}+M_\mathrm{B}
+\end{equation}
+\begin{equation}\label{soseiA}
+  C_\mathrm{A}=\frac{M_\mathrm{A}}{M}
+\end{equation}
+\begin{equation}\label{soseihi}
+  C_\mathrm{A}+C_\mathrm{B}=1
+\end{equation}
+
+A成分の部分体積と部分エントロピーは以下のようになる。B成分についても同様になる。
+\begin{equation}
+  \overline{V_\mathrm{A}}=\left.\frac{\partial V}{\partial M_\mathrm{A}}\right)_{T,P,M_\mathrm{B}}
+\end{equation}
+\begin{equation}
+  \overline{S_\mathrm{A}}=\left.\frac{\partial S}{\partial M_\mathrm{A}}\right)_{T,P,M_\mathrm{B}}
+\end{equation}
+\noindent また、定数$\lambda$として以下の性質を持つ。
+\begin{equation}\label{teisuubai}
+  V(T\hspace{1.5mm}  P\hspace{1.5mm} \lambda M_\mathrm{A} \hspace{1.5mm}\lambda M_\mathrm{B})=\lambda V(T\hspace{1.5mm}  P\hspace{1.5mm}  M_\mathrm{A} \hspace{1.5mm} M_\mathrm{B})
+\end{equation}
+\noindent $\lambda$で微分すると
+
+\begin{equation}
+  \overline{V_\mathrm{A}}(T\hspace{1.5mm}  P\hspace{1.5mm} \lambda M_\mathrm{A} \hspace{1.5mm}\lambda M_\mathrm{B})M_\mathrm{A}+ \overline{V_\mathrm{B}}(T\hspace{1.5mm}  P\hspace{1.5mm} \lambda M_\mathrm{A} \hspace{1.5mm}\lambda M_\mathrm{B})M_\mathrm{B}=V(T\hspace{1.5mm}  P\hspace{1.5mm}  M_\mathrm{A} \hspace{1.5mm} M_\mathrm{B})
+\end{equation}
+\noindent 従って、
+\begin{equation}\label{Vnituite}
+  \overline{V_\mathrm{A}}M_\mathrm{A}+\overline{V_\mathrm{B}}M_\mathrm{A}=V
+\end{equation}
+\noindent$\overline{V_\mathrm{A}}$と$\overline{V_\mathrm{B}}$は、示量的な変数である。エントロピーに関しても同様にして、以下の式がなりたつ。
+\begin{equation}
+  \overline{S_\mathrm{A}}M_\mathrm{A}+\overline{S_\mathrm{B}}M_\mathrm{A}=S
+\end{equation}
+
+式(\ref{teisuubai})は、式(\ref{situryou})と式(\ref{soseiA})より$M$と$C_\mathrm{A}$に関する式で表すことができる。
+
+\begin{equation}
+  V(T\hspace{1.5mm}  P\hspace{1.5mm} \lambda M \hspace{1.5mm}C_\mathrm{A})=\lambda V(T\hspace{1.5mm}  P\hspace{1.5mm} M \hspace{1.5mm} C_\mathrm{A})
+\end{equation}
+\noindent 同じように$\lambda$で微分すると
+\begin{equation}
+\begin{split}
+    \left.\frac{\partial V(T\hspace{1.5mm}  P\hspace{1.5mm} m \hspace{1.5mm}C_\mathrm{A})}{\partial m}\right|_{m=\lambda M_\mathrm{A}}M&=V(T\hspace{1.5mm}  P\hspace{1.5mm} M \hspace{1.5mm} C_\mathrm{A})\\
+    &= \frac{\partial V(T\hspace{1.5mm}  P\hspace{1.5mm} M \hspace{1.5mm}C_\mathrm{A})}{\partial M}M
+\end{split}
+\end{equation}
+
+\noindent 上の式の右辺より
+\begin{equation}\label{M}
+  \left.\frac{\partial V}{\partial M}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}C_\mathrm{A}}=\frac{V}{M}
+\end{equation}
+
+
+\noindent 式(\ref{Vnituite})を$M_\mathrm{A}$に関して偏微分する。$M$と$C_\mathrm{A}$が$M_\mathrm{A}$の関数であることに注意して展開する。また、上の式(\ref{M})と$C_\mathrm{A}$の定義に注意する。
+\begin{equation}\label{tenkai}
+\begin{split}
+  \overline{V_\mathrm{A}}=&\left.\frac{\partial}{\partial M_\mathrm{A}}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}M_\mathrm{B}}V(T\hspace{1.5mm}  P\hspace{1.5mm} \lambda M \hspace{1.5mm}C_\mathrm{A})\\=&\left.\frac{\partial V}{\partial M}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}C_\mathrm{A}}\left.\frac{\partial M}{\partial M_\mathrm{A}}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}M_\mathrm{B}}+\left.\frac{\partial V}{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}M}\left.\frac{\partial C_\mathrm{A}}{\partial M_\mathrm{A}}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}M_\mathrm{B}}\\
+  =&\frac{V}{M}+\left(M\left.\frac{\partial}{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}M} \frac{V}{M} \right)\frac{M_\mathrm{B}}{M^2}\\
+  =&\frac{\overline{V_\mathrm{A}}M_\mathrm{A}}{M}+\frac{\overline{V_\mathrm{B}}M_\mathrm{A}}{M}+\frac{M_\mathrm{B}}{M}\left.\frac{\partial}{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}M} \frac{V}{M}\\
+  =&\overline{V_{\mathrm{A}}}C_\mathrm{A}+\overline{V_{\mathrm{B}}}C_\mathrm{B}+C_\mathrm{B}\left.\frac{\partial}{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}M}\frac{1}{\rho}
+\end{split}
+\end{equation}
+ただし、$\rho=\rho_\mathrm{A}+\rho_\mathrm{B}$である。式(\ref{tenkai})の結果を左辺と比較する。式(\ref{soseihi})であることを考慮する。
+\begin{equation}\label{V}
+  \overline{V_{\mathrm{A}}}-\overline{V_{\mathrm{B}}}=\left.\frac{\partial}{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}M}\frac{1}{\rho}
+\end{equation}
+同様にして
+\begin{equation}\label{S}
+  \overline{S_{\mathrm{A}}}-\overline{S_{\mathrm{B}}}=\left.\frac{\partial}{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P\hspace{0.5mm}M}\frac{S}{M}
+\end{equation}
+一方で、序論の組成分布の最後に示したようにグランドポテンシャルを求める必要がある。単位質量あたりのグランドポテンシャルを以下に示す。
+
+\begin{equation}
+\begin{split}
+  d\left(\frac{G}{M}\right)=&\frac{1}{M}(-SdT+Vdp+\mu_ndM_n)+\mu_nM_nd\frac{1}{M}\\
+  =&-\frac{S}{M}dT+\frac{V}{M}dp+\mu_ndC_n\\=&-\widehat{S}dT+\frac{1}{\rho}dP+(\mu_A-\mu_B)dC_A
+\end{split}
+\end{equation}
+ただし、$mu_-=\frac{1}{2}(\mu_\mathrm{A}-\mu_\mathrm{B})$である。
+二成分溶液のMaxwellの関係式を示す。
+
+\begin{equation}\label{maxwell1}
+ \left.- \frac{\partial \hat{S}}{\partial P}\right)_{T\hspace{0.5mm}C_\mathrm{A}}=\left.\frac{\partial}{\partial T}\right)_{T\hspace{0.5mm}C_\mathrm{A}}\frac{1}{\rho}
+\end{equation}
+
+\begin{equation}\label{maxwell2}
+ \left.- \frac{\partial \hat{S}}{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P}=\left.2\frac{\partial \mu_-}{\partial T}\right)_{P\hspace{0.5mm}C_\mathrm{A}}
+\end{equation}
+
+\begin{equation}\label{maxwell3}
+   \left. \frac{\partial }{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P}\frac{1}{\rho}=\left.2\frac{\partial \mu_-}{\partial P}\right)_{T\hspace{0.5mm}C_\mathrm{A}}
+\end{equation}
+
+\noindent
+式(\ref{V})と式(\ref{maxwell3})より
+\begin{equation}\label{V-}
+   \frac{\overline{V_{\mathrm{A}}}-\overline{V_{\mathrm{B}}}}{2}=\left.\frac{\partial \mu_-}{\partial P}\right)_{T\hspace{0.5mm}C_\mathrm{A}}
+\end{equation}
+\noindent
+また、式(\ref{S})と式(\ref{maxwell2})より
+\begin{equation}\label{S-}
+  \frac{\overline{S_{\mathrm{A}}}-\overline{S_{\mathrm{B}}}}{2}=\left.-\frac{\partial \mu_-}{\partial T}\right)_{P\hspace{0.5mm}C_\mathrm{A}}
+\end{equation}
+
+
+\noindent
+ここで以下のように定義する。
+\begin{equation}\label{pm}
+\begin{split}
+  \overline{V_\pm}&=\frac{\overline{V_{\mathrm{A}}}\pm\overline{V_{\mathrm{B}}}}{2} \\
+  \overline{S_\pm}&=\frac{\overline{S_{\mathrm{A}}}\pm\overline{S_{\mathrm{B}}}}{2} 
+\end{split}
+\end{equation}
+
+$\mu_-$は、$T$と$P$と$C_{\mathrm{A}}$の式なので、式(\ref{V-})と式(\ref{S-})と式(\ref{pm})より、$\mu_-$の全微分は以下のようになる。
+
+\begin{equation}
+\begin{split}
+   \delta \mu_-=&\left.\frac{\partial \mu_-}{\partial P}\right)_{T\hspace{0.5mm}C_\mathrm{A}}\delta P+\left.\frac{\partial \mu_-}{\partial T}\right)_{P\hspace{0.5mm}C_\mathrm{A}}\delta T+\left.\frac{\partial \mu_-}{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P}\\
+   =&\overline{V_-}^{\mathrm{\hspace{0.5mm}ref}}\delta P-\overline{S_-}^{\mathrm{\hspace{0.5mm}ref}}\delta T+\left.\frac{\partial \mu_-}{\partial C_\mathrm{A}}\right)_{T\hspace{0.5mm}P}
+\end{split}
+\end{equation}
+
+また、Pの全微分の式は以下のようになる。
+
+\begin{equation}
+  \delta P=\rho\delta\mu_++\varphi\delta\mu_-+S\delta T
+\end{equation}
+以上の式が成り立ち、$\mu_+$は非常に小さいため$\varphi$によらないとする。$T$と$\rho$一定の元で以下の式が成り立つ。
+\begin{equation}\label{P}
+  \left.\frac{\partial P}{\partial \varphi}\right)_{T\hspace{0.5mm}\rho}=\left.\frac{\partial \mu_-}{\partial \varphi}\right)_{T\hspace{0.5mm}\rho}
+\end{equation}
+
+また、$\mu_{-}$は、$T$と$\rho$と$\varphi$の式なので、式(\ref{V-})と式(\ref{S-})と式(\ref{pm})より、$\mu_{-}$を$\varphi$で偏微分した。上の式(\ref{P})と$\varphi=\rho(2C_{\mathrm{A}}-1)$を用いて以下のように変形できる。
+
+\begin{equation}
+  \begin{split}
+     \left.\frac{\partial \mu_-}{\partial\varphi}\right)_{T\hspace{0.5mm}\rho}=&\left.\frac{\partial \mu_-}{\partial P}\right)_{T\hspace{0.5mm}C_{\mathrm{A}}}
+  \left.\frac{\partial P}{\partial \varphi}\right)_{T\hspace{0.5mm}\rho}+\left.\frac{\partial \mu_-}{\partial C_{\mathrm{A}}}\right)_{T\hspace{0.5mm}P}\left.\frac{\partial C_{\mathrm{A}}}{\partial \varphi}\right)_{T\hspace{0.5mm}\rho}\\
+  =&\overline{V_-}^{\mathrm{\hspace{0.5mm}ref}}\left.\frac{\partial \mu_-}{\partial \varphi}\right)_{T\hspace{0.5mm}\rho}+\left.\frac{\partial \mu_-}{\partial C_{\mathrm{A}}}\right)_{T\hspace{0.5mm}P}\frac{1}{2\rho}
+  \end{split}
+\end{equation}
+
+\noindent 従って、同じ偏微分の形を括って、$1-\overline{V_{-}}^{\hspace{0.5mm}\mathrm{ref}}\varphi=\overline{V_{+}}^{\hspace{0.5mm}\mathrm{ref}}$となるので以下の式が成り立つ。
+
+\begin{equation}\label{neturik}
+  \left.\frac{\partial\mu_-}{\partial C_{\mathrm{A}}}\right)_{T\hspace{0.5mm}P}=2\rho\overline{V_+}^{\hspace{5mm}\mathrm{ref}}\left.\frac{\partial \mu_-}{\partial \varphi}\right)_{T\hspace{0.5mm}\rho}
+\end{equation}
+
+
+
+
+
+
+\chapter{Renomalized Local Function Theory}
+
+\section{Ising modelとは}
+Ising modelとは、一軸異方性のあるスピンを統計力学で表したモデルである。スピンは、小さな磁石のようなのもで、磁場の方向とスピンの方向によってエネルギーが異なる。スピンそのものが磁場を作るので物質中では、相互作用が生じている。スピン間の相互作用を考えると、磁性に関する相転移を考えることができる。
+
+\section{Ginzburg-Landau-Wilson modelでの最尤値}
+
+臨界点近傍には分子的詳細によらない普遍的な性質が現れる。このような性質を調べるためにはIsing modelのように一つ一つスピンを記述するモデルを使う必要がない。Ising modelを粗くみたGLW model(Ginzburg-Landau-Wilson model)を考える。
+磁性体で考えた時の局所スピンの合計を$\phi(\boldsymbol{r})$とし、磁場を$J(\boldsymbol{r})$とする。絶対温度$T$と相転移が起こるキュリー点$T_0$を用いて、$m \propto T-T_0$とすると次の式が成り立つ。
+
+\begin{align}\label{eq:2.1}
+P_{profile} \propto \exp\left[-\int_V d\boldsymbol{r} \left(\frac{1}{2}m \phi^2+\frac{1}{4!} \lambda\phi^4+\frac{1}{2}a^2|\nabla\phi^2|-J\phi\right)\right]
+\end{align}
+
+\indent 積分部分は無次元の有効ハミルトニアン$\mathcal{H}[\phi]$である。
+一様磁場が0の時、すなわち$J(\boldsymbol{r})=0$の時、$\mathcal{H}[\phi]$は最小であり、$\phi$は一様なので$|\nabla\phi^2|=0$となる。したがって次の式を考える。
+
+\begin{align}\label{eq:2.2}
+m\phi+\frac{1}{6}\lambda\phi^3=0
+\end{align}
+
+\begin{equation}
+  m\psi+\frac{1}{6}\lambda\psi^3=0
+\end{equation}
+
+\begin{equation}
+   \begin{cases}
+  m>0 & \psi=0 \\
+  m<0 & \psi=\sqrt{-\frac{6m}{\lambda}}
+  \end{cases}
+\end{equation}
+以上のことから、$\phi$は局所スピンの合計を表しているので、$m=0$を境界として磁性が変わる。グラフより、$m>0$のグラフは常磁性で、$\phi$に偏りが出来やすい$m<0$で強磁性ということがわかる。
+
+$J(\boldsymbol{r})$が一様でない時、変化分を見るために()式より
+\begin{equation}\label{eq:2.3}
+\begin{split}
+\mathcal{H}[\phi+\delta]-\mathcal{H}[\phi]=&\int_{V}m\phi\delta\phi+\frac{1}{6}\lambda\phi^3\delta\phi-J\delta\phi+\\
+&\frac{1}{2}a^2((\nabla\phi+\nabla\delta\phi)\cdot(\nabla\phi+\nabla\delta\phi)-\nabla\phi\cdot\nabla\phi))\\
++高次微小
+\end{split}
+\end{equation}
+
+(\ref{eq:2.3})式の$(\nabla\phi+\nabla\delta\phi)\cdot(\nabla\phi+\nabla\delta\phi)-\nabla\phi\cdot\nabla\phi$では、$\nabla\phi\cdot\nabla\phi$の項が消える。また一次の項だけ取り出すと、$2\nabla\phi\cdot\nabla\delta\phi+微小項$と表せる。部分積分を用いて以下のようにする。
+\begin{equation}\label{eq:2.4}
+\int_Vd\boldsymbol{r}\nabla\phi\cdot\nabla\delta\phi=\int_Vd\boldsymbol{r}\nabla\cdot(\delta\phi\nabla\phi)-\int_Vd\boldsymbol{r}\delta\phi\cdot\Delta\phi
+\end{equation}
+
+\indent また(\ref{eq:2.4})式の右辺の一項目は以下のように式変形できる。以下の式はガウスの発散定理と
+
+\begin{equation}
+\int_Vd\boldsymbol{r}\nabla\cdot(\delta\phi\nabla\phi)=\int_{\partial V}dS \boldsymbol{n}\cdot\delta\phi\nabla\phi=0
+\end{equation}
+
+\indent 以上より(\ref{eq:2.3})式は次のようになる。
+
+\begin{equation}
+\mathcal{H}[\phi+\delta]-\mathcal{H}[\phi]=\int_Vd\boldsymbol{r}\left(m\phi+\frac{1}{6}\lambda\phi^3-a^2\Delta\phi-J\right)\delta\phi
+\end{equation}
+となる。
+
+\begin{align}
+m\langle\phi(\boldsymbol{r})\rangle+\frac{1}{6}\lambda\langle\phi(\boldsymbol{r})\rangle^3-a^2\Delta\langle\phi(\boldsymbol{r})\rangle=J(\boldsymbol{r})
+\end{align}
+
+\begin{align}\label{B}
+m\frac{\delta\langle\phi(\boldsymbol{r})\rangle}{\delta J(\boldsymbol{r'})}+\frac{1}{2}\lambda\langle\phi(\boldsymbol{r})\rangle^2\frac{\delta\langle\phi(\boldsymbol{r})\rangle}{\delta J(\boldsymbol{r'})}-a^2\Delta\frac{\delta\langle\phi(\boldsymbol{r})\rangle}{\delta J(\boldsymbol{r'})}=\delta(\boldsymbol{r+r'})
+\end{align}
+\newpage
+\chapter{流体力学}
+
+
+\begin{thebibliography}{9}
+\bibitem{bunken2} S. Yabunaka and Y. Fujitani, Phys.~Fluids {\bf 34}, 052012 (2022).
+\bibitem{bunken0} B. V. Derjaguin, {\it et al.\/}, ~{¥bf 9}, 335–347 (1947).
+\bibitem{bunken1}D. Beysens and and S. Leibler, J. Physique Lett.~{¥bf 43}, 133-136 (1982)
+\bibitem{bunken3}  R. Okamoto and A. Onuki, J. Chem.~Phys.~{\bf 136}, 114704 (2012).
+\bibitem{bunken4}M. E. Fisher and P. G. de Gennes, C. R. Acad Sci.~Paris B {\bf 287}, 207 (1978).
+\end{thebibliography}
+
+\newpage
+\addcontentsline{toc}{chapter}{謝辞}
+\chapter*{謝辞}
+
+\end{document}
